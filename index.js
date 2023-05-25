@@ -1,4 +1,6 @@
 const express = require("express");
+const cors = require("cors");
+
 
 const { connection } = require("./config/db.js");
 const { Admincontroller } = require("./routes/admin.route.js");
@@ -10,6 +12,8 @@ const { Roomcontroller } = require("./routes/room.route.js");
 const { Bookingcontroller } = require("./routes/booking.route.js");
 const app = express();
 const port = 8080;
+
+app.use(cors())
 
 app.use(express.json());
 // app.use(authorization)
