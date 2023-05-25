@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
-const authentication = (req, res, next) => {
+const userAuthentication = (req, res, next) => {
   if (!req.headers.authorization) {
     res.send("please login");
   } else {
@@ -12,7 +12,7 @@ const authentication = (req, res, next) => {
       if (err) {
         res.send("please login");
       } else {
-        req.body.AdminId = decoded.AdminId;
+        req.body.userId = decoded.userId;
         req.body.email = decoded.email;
         next();
       }
@@ -21,5 +21,5 @@ const authentication = (req, res, next) => {
 };
 
 module.exports = {
-  authentication,
+  userAuthentication,
 };

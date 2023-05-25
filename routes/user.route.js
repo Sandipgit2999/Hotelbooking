@@ -1,8 +1,5 @@
-const express = require("express");
 const { UserModel } = require("../models/user.model");
 require("dotenv").config();
-
-
 const jwt = require("jsonwebtoken");
 const secret = process.env.secret;
 const bcrypt = require("bcrypt");
@@ -10,12 +7,16 @@ const { Router } = require("express");
 
 const Usercontroller = Router();
 
+Usercontroller.get("/", async (req, res) => {
+  res.send("HiI");
+});
+
 Usercontroller.post("/signup", async (req, res) => {
   const { email, password } = req.body;
   const payload = req.body;
-  //console.log(payload);
+  console.log(payload, "payload");
 
-  const present = await UserModel.findOne(payload);
+  const present = await UserModel.findOne({ email });
   if (present) {
     res.send("user already created");
   } else {
